@@ -1,0 +1,4 @@
+<h4>Введите ИНН</h4>
+<input id="chat-input" type="text"></input>
+<button id="sendBtn">Отправить</button>
+<div id="messages"></div>
