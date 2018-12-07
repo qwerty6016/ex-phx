@@ -61,20 +61,20 @@ let messagesContainer = document.querySelector("#messages")
 let sendBtn           = document.querySelector("#sendBtn")
 
 sendBtn.addEventListener("click", event => {
-	channel.push("check_egrul", {body: chatInput.value})
-    chatInput.value = ""
+  channel.push("check_egrul", {body: chatInput.value})
+  chatInput.value = ""
 })
 
 channel.on("egrul_checked", payload => {
   let messageItem = document.createElement("p")
-  messageItem.innerText = payload.body
+  messageItem.innerText = "[" + payload.date_time + "] " + payload.inn + " : " + payload.result
   messagesContainer.appendChild(messageItem)
 })
 
 channel.join()
-  .receive("ok", resp => { 
-      console.log("Joined successfully", resp) 
-	  channel.push("get_previous_checks")
+  .receive("ok", resp => {
+    console.log("Joined successfully", resp)
+    channel.push("get_previous_checks")
   })
   .receive("error", resp => { console.log("Unable to join", resp) })
 
